@@ -1,0 +1,65 @@
+<svg width="1200" height="380" viewBox="0 0 1200 380" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#10141c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="120" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#39c5cf"/>
+      <stop offset="0.55" stop-color="#58a6ff"/>
+      <stop offset="1" stop-color="#bc8cff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- terminal card -->
+  <rect x="8" y="8" width="1184" height="364" rx="14" fill="url(#bg)" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- title bar -->
+  <line x1="8" y1="52" x2="1192" y2="52" stroke="#30363d" stroke-width="1.5"/>
+  <circle cx="36" cy="30" r="7" fill="#ff5f56"/>
+  <circle cx="60" cy="30" r="7" fill="#ffbd2e"/>
+  <circle cx="84" cy="30" r="7" fill="#27c93f"/>
+  <text x="600" y="35" text-anchor="middle" fill="#8b949e" font-size="14">agentic-engineering — claude code plugin</text>
+
+  <!-- prompt -->
+  <text x="36" y="96" font-size="16" fill="#8b949e">
+    <tspan fill="#3fb950">$</tspan> claude plugin install <tspan fill="#e6edf3">agentic-engineering@giusto-agentic</tspan><tspan fill="#58a6ff">▋</tspan>
+  </text>
+
+  <!-- wordmark -->
+  <text x="36" y="176" font-size="60" font-weight="700" fill="url(#accent)" letter-spacing="-1">agentic-engineering</text>
+
+  <!-- tagline -->
+  <text x="38" y="214" font-size="18" fill="#c9d1d9">never go prompt → code.  shape it, decide it, ship it, measure it, eval it.</text>
+
+  <!-- pipeline -->
+  <g font-size="15" font-weight="600">
+    <g>
+      <rect x="36" y="258" width="118" height="44" rx="8" fill="#161b22" stroke="#39c5cf" stroke-width="1.5"/>
+      <text x="95" y="285" text-anchor="middle" fill="#39c5cf">/pitch</text>
+    </g>
+    <text x="170" y="285" text-anchor="middle" fill="#484f58" font-size="20">→</text>
+    <g>
+      <rect x="190" y="258" width="118" height="44" rx="8" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+      <text x="249" y="285" text-anchor="middle" fill="#58a6ff">/adr</text>
+    </g>
+    <text x="324" y="285" text-anchor="middle" fill="#484f58" font-size="20">→</text>
+    <g>
+      <rect x="344" y="258" width="118" height="44" rx="8" fill="#161b22" stroke="#7c8cff" stroke-width="1.5"/>
+      <text x="403" y="285" text-anchor="middle" fill="#7c8cff">/ship</text>
+    </g>
+    <text x="478" y="285" text-anchor="middle" fill="#484f58" font-size="20">→</text>
+    <g>
+      <rect x="498" y="258" width="128" height="44" rx="8" fill="#161b22" stroke="#bc8cff" stroke-width="1.5"/>
+      <text x="562" y="285" text-anchor="middle" fill="#bc8cff">/measure</text>
+    </g>
+    <text x="642" y="285" text-anchor="middle" fill="#484f58" font-size="20">→</text>
+    <g>
+      <rect x="662" y="258" width="118" height="44" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="721" y="285" text-anchor="middle" fill="#3fb950">/eval</text>
+    </g>
+  </g>
+
+  <!-- roles caption -->
+  <text x="38" y="340" font-size="13" fill="#6e7681">parallelize readers · serialize writers   ·   executor — researcher — reviewer — measurer   ·   dark-launch eval-gated</text>
+</svg>
