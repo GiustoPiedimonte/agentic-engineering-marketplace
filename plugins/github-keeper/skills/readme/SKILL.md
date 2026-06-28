@@ -9,15 +9,30 @@ description: >
   structure) — every signal derived from the actual repo. Honesty-first: never adds
   a signal the repo can't back. Produces a verifiable result, then re-verifies.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # /readme — audit & elevate a public README
 
 A README is a contract: every claim — version, install command, link, badge — is
 implicitly promised true. This skill keeps that contract honest **and** raises the
-README to a high standard. `$ARGUMENTS` is the target (a path, default `README.md`)
-and a mode:
+README to a high standard.
+
+`$ARGUMENTS` is an optional path and a mode. **With no path, discover and handle
+every README in the repo**, not just the root one. Match files whose *basename* is
+`README.md` (or `README.<lang>.md` for translations) — not a substring match, which
+would wrongly pull in reference docs like `README_CHECKLIST.md`:
+
+```bash
+git ls-files | grep -E '(^|/)README(\.[a-z]{2})?\.md$'
+```
+
+This finds the root README plus nested ones (`plugins/*/README.md`,
+`packages/*/README.md`, `docs/**/README.md`, …). Apply the **right tier** to each
+(see below); don't impose the landing-page look on a component reference. Pass a
+path to target a single file.
+
+Modes:
 
 - **`audit`** — report only: ranked pass/fail findings, no edits.
 - **`elevate`** (default for a thin/generic/empty README) — rebuild it to a
@@ -31,6 +46,23 @@ you cannot back. No CI badge without a workflow, no version badge a release will
 outdate, no registry badge without a published package, no "used by" without real
 users, no vanity chip without a link to its proof. A broken or dishonest badge is
 worse than none — when in doubt, drop it.
+
+## README tiers (not every README is the front page)
+
+Hold each README to the standard that fits its role — don't put a hero banner on a
+sub-page:
+
+- **Landing** (one per repo — the root `README.md`): the full standard — hero
+  banner, badge row, tagline, nav, TOC, the cognitive funnel. This is the project's
+  front door.
+- **Component reference** (`plugins/*/README.md`, `packages/*/README.md`,
+  `docs/**/README.md`): a clean, accurate reference — one clear H1, correct
+  structure, language-tagged fences, resolving links, honest content. **No banner,
+  no hero, no badge row** (those belong to the landing page). Excellence here is
+  clarity and accuracy, not decoration.
+
+When sweeping a repo, classify each README first, then apply its tier's bar. A
+plain component reference is *correct*, not a defect; a plain landing page is a gap.
 
 ## Process
 
@@ -82,7 +114,9 @@ worse than none — when in doubt, drop it.
 
 5. **Report specifics.** For audit: ranked pass/fail with `file:line`. For elevate:
    the detected signals, every badge/chip with its justified link target, and the
-   sections rebuilt. No "looks fine" — passed or failed.
+   sections rebuilt. No "looks fine" — passed or failed. **When sweeping a repo,
+   report per-README with its tier** (landing vs component reference), so a clean
+   sub-page reads as "passed for its tier," not as a miss.
 
 6. **Verify the result, don't assert it.** Re-run link/anchor/badge checks and
    render-check the banner after editing; show the output. Confirm one H1, every

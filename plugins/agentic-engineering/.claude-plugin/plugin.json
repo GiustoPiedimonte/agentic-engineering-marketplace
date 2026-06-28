@@ -1,7 +1,7 @@
 {
   "name": "agentic-engineering",
   "version": "0.2.0",
-  "description": "Spec-driven agentic engineering workflow: shape (pitch) -> decide (ADR) -> execute (delegated cycle with adversarial review) -> measure -> eval. Dark-launch eval-gated. Generalized from a mature production setup.",
+  "description": "Spec-driven agentic engineering workflow: shape (pitch) -> decide (ADR) -> execute (delegated cycle with adversarial review) -> measure -> eval. Dark-launch eval-gated. Distilled from a real agentic-engineering practice.",
   "author": {
     "name": "Giusto Piedimonte"
   },

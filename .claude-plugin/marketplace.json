@@ -19,8 +19,8 @@
     },
     {
       "name": "github-keeper",
-      "description": "Make a public GitHub repo well-made and honest: /readme audits & elevates the README (banner, honest live badges, repo-specific chips); /opensource adds community-health files, an honest CI gate, and the right repo settings. Honesty-first; confirms outward actions.",
-      "version": "0.3.0",
+      "description": "Make a public GitHub repo well-made and honest: /readme audits & elevates READMEs (sweeps all READMEs by tier; banner, honest live badges, repo-specific chips); /opensource adds community-health files, an honest CI gate, and the right repo settings. Honesty-first; confirms outward actions.",
+      "version": "0.3.1",
       "source": "./plugins/github-keeper",
       "category": "documentation",
       "author": {

@@ -51,16 +51,18 @@ Coding agents make it cheap to go from a prompt straight to a diff — and that'
 exactly the trap. Unshaped work balloons in scope, decisions get lost, and a
 green build gets mistaken for a correct one.
 
-This plugin encodes a different discipline, generalized from a mature production
-setup: **shape the work into a written spec first, record the hard decisions,
-delegate execution to a single serialized writer with an adversarial reviewer as
-a gate, and let real data — not a passing test — decide what ships.** Five
-skills, four subagent roles, and verification hooks make that discipline portable
-to any repo.
+This plugin encodes a different discipline, distilled from a real, opinionated
+agentic-engineering practice: **shape the work into a written spec first, record
+the hard decisions, delegate execution to a single serialized writer with an
+adversarial reviewer as a gate, and let real data — not a passing test — decide
+what ships.** Five skills, four subagent roles, and verification hooks make that
+discipline portable to any repo.
 
 > [!NOTE]
-> Distributed as a Claude Code *marketplace* named `giusto-agentic`, which hosts
-> the `agentic-engineering` plugin. One marketplace can host many plugins.
+> These are early, opinionated tools — structurally validated and dogfooded on
+> this repo, not yet battle-tested across many. Feedback and issues are welcome.
+> Distributed as a Claude Code *marketplace* named `giusto-agentic`; one
+> marketplace can host many plugins.
 
 ## Install
 

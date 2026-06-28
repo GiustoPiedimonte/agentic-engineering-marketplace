@@ -1,7 +1,7 @@
 # agentic-engineering (Claude Code plugin)
 
 Spec-driven agentic engineering as an installable plugin. Generalized from a
-mature production setup: the workflows that lived there as
+real, opinionated agentic-engineering practice: the workflows that lived there as
 prose conventions are turned into **invocable skills**, the bespoke subagents
 into **portable roles**, and the "build+test green" rule into a **deterministic
 hook** — so the same discipline travels to every repo, including new/simpler ones.
