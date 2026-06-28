@@ -37,8 +37,8 @@ consistent `?style=`. Idiom is always `[![alt](image)](target)`.
 | Badge | Emit when | shields image | Click target |
 |---|---|---|---|
 | License | a LICENSE exists | `img.shields.io/github/license/{owner}/{repo}` | `/blob/{branch}/LICENSE` |
-| Last commit | always (GitHub) | `…/github/last-commit/{owner}/{repo}` | `/commits/{branch}` |
-| Stars | always (GitHub) | `…/github/stars/{owner}/{repo}` | `/stargazers` |
+| Last commit | *volatile* — see below | `…/github/last-commit/{owner}/{repo}` | `/commits/{branch}` |
+| Stars | *volatile* — see below | `…/github/stars/{owner}/{repo}` | `/stargazers` |
 | Release | a tag/release exists | `…/github/v/release/{owner}/{repo}` | `/releases` |
 | CI build | a workflow exists | `…/github/actions/workflow/status/{owner}/{repo}/{file}.yml` | `/actions/workflows/{file}.yml` |
 | npm version | published to npm | `…/npm/v/{pkg}` | `npmjs.com/package/{pkg}` |
@@ -57,6 +57,20 @@ wired. Derive the label/number from the repo; link it to where it's verifiable.
 Never a vanity number with no link.
 
 Keep the row tight: 3–6 badges. Drop anything that would render `unknown`.
+
+**Honest *and* not self-undermining (stable vs volatile).** All dynamic badges
+auto-update (shields fetches live, ~5-min cache) — none need manual upkeep. But
+"auto-updates" ≠ "should be shown":
+
+- **Stable & meaningful** — `license`, `release`/version, `CI` status, registry
+  version. They reflect the project's quality and don't fluctuate. Prefer these.
+- **Volatile / vanity** — `stars`, `last-commit`. Optional, and they can backfire:
+  a `stars` badge reading `1` says "nobody uses this," and **`last-commit`
+  auto-advertises dormancy** — it will honestly update to "last commit 9 months
+  ago" the moment the repo goes quiet. Use them only on an active, popular repo
+  where they flatter; on a young or intermittently-maintained one, omit them.
+
+The gate isn't just "is it true?" but "does it help, even six months from now?"
 
 ## Step 3 — Build the hero
 

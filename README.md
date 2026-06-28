@@ -8,8 +8,6 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/GiustoPiedimonte/agentic-engineering-marketplace/validate.yml?style=flat-square&label=ci&branch=main)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/actions/workflows/validate.yml)
 [![Release](https://img.shields.io/github/v/release/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=58a6ff)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/releases)
 [![License: MIT](https://img.shields.io/github/license/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=8b949e)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/blob/main/LICENSE)
-[![Stars](https://img.shields.io/github/stars/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=f0c040)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/stargazers)
-[![Last commit](https://img.shields.io/github/last-commit/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=3fb950)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/commits/main)
 
 **A spec-driven workflow for building with coding agents.**
 Never go prompt → code: *shape → decide → execute → measure → eval.*
@@ -130,12 +128,14 @@ review fan out across many agents; only one writer ever touches the code.
 ### Hooks
 
 - **PostToolUse** — auto-format/lint edited TS/Py files (only if `eslint`/`ruff` are present).
-- **Stop** — a gate that requires verification evidence before ending a code turn.
+- **Stop** — when a turn leaves uncommitted changes, a gate that asks for the
+  project's own verification output before ending (silent when the tree is clean).
 
 > [!IMPORTANT]
-> The Stop hook means a code-changing turn won't quietly end on "looks good."
-> It asks for the typecheck/build/test output as evidence — verification is part
-> of *done*, not an afterthought.
+> The Stop hook means a turn with uncommitted changes won't quietly end on "looks
+> good." It asks you to run *this project's* checks (tests / build / lint, or a
+> validate script) and show the output — verification is part of *done*. It stays
+> silent on clean turns, and doesn't assume checks the repo doesn't have.
 
 ## Requirements
 

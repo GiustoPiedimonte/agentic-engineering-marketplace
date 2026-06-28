@@ -32,7 +32,9 @@ and review delegated to isolated subagents, and verification as a gate.
 
 **Hooks**
 - PostToolUse: auto-format/lint edited TS/Py files (only if eslint/ruff present).
-- Stop: prompt gate that requires verification evidence before ending a code turn.
+- Stop: when a turn leaves uncommitted changes, a gate that asks for the project's
+  own verification output before ending — silent on clean turns, and artifact-neutral
+  (it references the repo's real checks, not assumed typecheck/build/test).
 
 ## Install
 
