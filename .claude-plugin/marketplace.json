@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "giusto-agentic",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Agentic engineering tooling: a spec-driven shape/decide/execute/measure/eval workflow with adversarial review, plus README maintenance.",
   "owner": {
     "name": "Giusto Piedimonte"
