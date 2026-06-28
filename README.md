@@ -186,10 +186,11 @@ agentic-engineering-marketplace/
 
 ## Also in this marketplace
 
-[**readme-keeper**](plugins/readme-keeper/README.md) — a `/readme` skill that
-audits and maintains a public repo's README to a high standard (honest clickable
-badges, cognitive-funnel structure, link/anchor integrity, version consistency).
-Install it with `/plugin install readme-keeper@giusto-agentic`.
+[**github-keeper**](plugins/github-keeper/README.md) — make a public repo
+well-made and honest. `/readme` audits and elevates the README (honest clickable
+badges, repo-specific banner and chips, cognitive-funnel structure); `/opensource`
+adds the community-health files, an honest CI gate, and the right repo settings.
+Install it with `/plugin install github-keeper@giusto-agentic`.
 
 ## Contributing
 

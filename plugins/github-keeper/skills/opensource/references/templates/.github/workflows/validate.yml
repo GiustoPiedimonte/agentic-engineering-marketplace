@@ -1,0 +1,25 @@
+# TEMPLATE — a minimal CI gate so a CI badge is honest.
+# Replace the run step with THIS repo's real check:
+#   - code repo:    its test + lint command (e.g. `npm test`, `pytest`, `cargo test`)
+#   - markdown/JSON: a validation script (manifests parse, links resolve, etc.)
+# Keep it deterministic so the badge means something. Name the file `validate.yml`
+# so the badge URL is .../actions/workflow/status/{{OWNER}}/{{REPO}}/validate.yml
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # - uses: actions/setup-node@v4   # or setup-python, setup-go, etc.
+      - name: Run checks
+        run: '{{VALIDATE_COMMAND}}'

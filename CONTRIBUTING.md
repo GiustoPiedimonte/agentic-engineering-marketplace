@@ -2,7 +2,7 @@
 
 Thanks for your interest in improving this marketplace. It hosts Claude Code
 plugins — `agentic-engineering` (a spec-driven engineering workflow) and
-`readme-keeper` (README maintenance). Contributions of all sizes are welcome: a
+`github-keeper` (README + open-source repo maintenance). Contributions of all sizes are welcome: a
 bug report, a sharper skill prompt, a doc fix, or a new role/skill that fits.
 
 ## Ways to contribute
@@ -26,7 +26,7 @@ the existing voice (terse, principled, evidence over assertion).
    ```bash
    claude plugin validate .
    claude plugin validate ./plugins/agentic-engineering
-   claude plugin validate ./plugins/readme-keeper
+   claude plugin validate ./plugins/github-keeper
    ```
 2. **Keep manifests in sync** — if you change a plugin, bump its `version` in both
    its `plugin.json` and the matching entry in `.claude-plugin/marketplace.json`.

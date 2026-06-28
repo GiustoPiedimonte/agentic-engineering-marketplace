@@ -18,10 +18,10 @@
       }
     },
     {
-      "name": "readme-keeper",
-      "description": "Audit and elevate a public repo's README: rebuild a thin/generic one to a polished, repo-specific README — banner, honest live badges, custom chips, cognitive-funnel structure — every signal derived from the actual repo. Honesty-first.",
-      "version": "0.2.0",
-      "source": "./plugins/readme-keeper",
+      "name": "github-keeper",
+      "description": "Make a public GitHub repo well-made and honest: /readme audits & elevates the README (banner, honest live badges, repo-specific chips); /opensource adds community-health files, an honest CI gate, and the right repo settings. Honesty-first; confirms outward actions.",
+      "version": "0.3.0",
+      "source": "./plugins/github-keeper",
       "category": "documentation",
       "author": {
         "name": "Giusto Piedimonte"

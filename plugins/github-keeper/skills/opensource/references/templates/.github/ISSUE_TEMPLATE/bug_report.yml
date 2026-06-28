@@ -1,0 +1,31 @@
+name: Bug report
+description: Something doesn't work as expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report. Please do not use this form for security issues — see the security policy.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      description: Version, OS, and anything relevant to reproduce.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output
+      render: shell

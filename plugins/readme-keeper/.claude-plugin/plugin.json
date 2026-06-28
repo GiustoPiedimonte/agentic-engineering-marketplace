@@ -1,9 +1,0 @@
-{
-  "name": "readme-keeper",
-  "version": "0.2.0",
-  "description": "Audit and elevate a public repository's README. Rebuilds a thin/generic README to a polished, repo-specific one — banner, honest live badges, custom chips, cognitive-funnel structure, real examples — every signal derived from the actual repo. Honesty-first: never shows a signal the repo can't back.",
-  "author": {
-    "name": "Giusto Piedimonte"
-  },
-  "keywords": ["readme", "documentation", "badges", "shields", "public-repo", "maintenance"]
-}

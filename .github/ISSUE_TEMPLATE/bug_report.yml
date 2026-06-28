@@ -11,7 +11,7 @@ body:
       label: Which plugin?
       options:
         - agentic-engineering
-        - readme-keeper
+        - github-keeper
         - marketplace / install
         - not sure
     validations:
