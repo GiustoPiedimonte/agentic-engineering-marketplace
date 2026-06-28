@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a new skill, agent, or improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What's missing or awkward today? Describe the problem before the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What would you add or change? How would it fit the shape → decide → execute → measure → eval spine (or README maintenance)?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches, and why this one.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Honesty check
+      options:
+        - label: This doesn't require fabricating signals, claims, or capabilities that aren't real.
+          required: true

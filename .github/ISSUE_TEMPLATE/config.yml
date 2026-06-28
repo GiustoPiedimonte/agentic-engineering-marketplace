@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/security/advisories/new
+    about: Report a security issue privately — please do not open a public issue.
+  - name: Question / discussion
+    url: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/issues
+    about: For usage questions, open a regular issue and describe what you're trying to do.

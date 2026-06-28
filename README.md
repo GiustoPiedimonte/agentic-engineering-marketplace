@@ -5,6 +5,7 @@
 <h1 align="center">agentic-engineering</h1>
 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-bc8cff?style=flat-square&logo=anthropic&logoColor=white)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace)
+[![CI](https://img.shields.io/github/actions/workflow/status/GiustoPiedimonte/agentic-engineering-marketplace/validate.yml?style=flat-square&label=ci&branch=main)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/actions/workflows/validate.yml)
 [![Release](https://img.shields.io/github/v/release/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=58a6ff)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/releases)
 [![License: MIT](https://img.shields.io/github/license/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=8b949e)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/blob/main/LICENSE)
 [![Stars](https://img.shields.io/github/stars/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=f0c040)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/stargazers)
