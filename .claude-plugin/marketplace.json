@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "giusto-agentic",
   "version": "0.2.0",
-  "description": "Agentic engineering tooling: spec-driven shape/decide/execute workflow with adversarial review.",
+  "description": "Agentic engineering tooling: a spec-driven shape/decide/execute/measure/eval workflow with adversarial review, plus README maintenance.",
   "owner": {
     "name": "Giusto Piedimonte"
   },
@@ -13,6 +13,16 @@
       "version": "0.2.0",
       "source": "./plugins/agentic-engineering",
       "category": "development",
+      "author": {
+        "name": "Giusto Piedimonte"
+      }
+    },
+    {
+      "name": "readme-keeper",
+      "description": "Audit and maintain a public repo's README to a high standard: clickable honest live badges, cognitive-funnel structure, link/anchor integrity, version consistency, accessibility. Honesty-first.",
+      "version": "0.1.0",
+      "source": "./plugins/readme-keeper",
+      "category": "documentation",
       "author": {
         "name": "Giusto Piedimonte"
       }

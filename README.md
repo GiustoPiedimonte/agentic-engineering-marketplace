@@ -40,6 +40,7 @@ Never go prompt → code: *shape → decide → execute → measure → eval.*
 - [Requirements](#requirements)
 - [Customize per repo](#customize-per-repo)
 - [Maintaining](#maintaining)
+- [Also in this marketplace](#also-in-this-marketplace)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -181,6 +182,13 @@ agentic-engineering-marketplace/
 └── README.md
 ```
 </details>
+
+## Also in this marketplace
+
+[**readme-keeper**](plugins/readme-keeper/README.md) — a `/readme` skill that
+audits and maintains a public repo's README to a high standard (honest clickable
+badges, cognitive-funnel structure, link/anchor integrity, version consistency).
+Install it with `/plugin install readme-keeper@giusto-agentic`.
 
 ## Contributing
 

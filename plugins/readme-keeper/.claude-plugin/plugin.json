@@ -1,0 +1,9 @@
+{
+  "name": "readme-keeper",
+  "version": "0.1.0",
+  "description": "Audit and maintain a public repository's README to a high standard: clickable, honest, live badges; cognitive-funnel structure; link/anchor integrity; version consistency; accessibility. Honesty-first — never shows a signal the repo can't back.",
+  "author": {
+    "name": "Giusto Piedimonte"
+  },
+  "keywords": ["readme", "documentation", "badges", "shields", "public-repo", "maintenance"]
+}
