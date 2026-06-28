@@ -19,8 +19,8 @@
     },
     {
       "name": "readme-keeper",
-      "description": "Audit and maintain a public repo's README to a high standard: clickable honest live badges, cognitive-funnel structure, link/anchor integrity, version consistency, accessibility. Honesty-first.",
-      "version": "0.1.0",
+      "description": "Audit and elevate a public repo's README: rebuild a thin/generic one to a polished, repo-specific README — banner, honest live badges, custom chips, cognitive-funnel structure — every signal derived from the actual repo. Honesty-first.",
+      "version": "0.2.0",
       "source": "./plugins/readme-keeper",
       "category": "documentation",
       "author": {
