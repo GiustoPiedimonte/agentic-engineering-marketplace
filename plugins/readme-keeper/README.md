@@ -25,7 +25,7 @@ badge signals neglect — worse than no badge. When in doubt, drop it.
 
 ## Install
 
-```
+```text
 /plugin marketplace add GiustoPiedimonte/agentic-engineering-marketplace
 /plugin install readme-keeper@giusto-agentic
 ```
@@ -34,7 +34,7 @@ After install, `/readme` is available as a command.
 
 ## Usage
 
-```
+```text
 /readme                 # audit README.md, report ranked findings, offer to fix
 /readme fix             # audit then apply the high-quality structure + fixes
 /readme audit docs/X.md # report only, on a specific file

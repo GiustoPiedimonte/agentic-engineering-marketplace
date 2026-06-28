@@ -2,7 +2,7 @@
 
 <img src="assets/banner.svg" alt="agentic-engineering — a Claude Code plugin: shape, decide, execute, measure, eval" width="100%">
 
-<br>
+<h1 align="center">agentic-engineering</h1>
 
 [![Claude Code](https://img.shields.io/badge/Claude_Code-plugin-bc8cff?style=flat-square&logo=anthropic&logoColor=white)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace)
 [![Release](https://img.shields.io/github/v/release/GiustoPiedimonte/agentic-engineering-marketplace?style=flat-square&color=58a6ff)](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/releases)
@@ -65,7 +65,7 @@ to any repo.
 
 In Claude Code:
 
-```
+```text
 /plugin marketplace add GiustoPiedimonte/agentic-engineering-marketplace
 /plugin install agentic-engineering@giusto-agentic
 ```
@@ -73,7 +73,7 @@ In Claude Code:
 <details>
 <summary>CLI equivalent</summary>
 
-```
+```bash
 claude plugin marketplace add GiustoPiedimonte/agentic-engineering-marketplace
 claude plugin install agentic-engineering@giusto-agentic
 ```
@@ -160,7 +160,7 @@ Users pick it up with `/plugin marketplace update giusto-agentic`.
 
 Validate before pushing:
 
-```
+```bash
 claude plugin validate .
 claude plugin validate ./plugins/agentic-engineering
 ```
@@ -168,7 +168,7 @@ claude plugin validate ./plugins/agentic-engineering
 <details>
 <summary>Repo layout</summary>
 
-```
+```text
 agentic-engineering-marketplace/
 ├── .claude-plugin/
 │   └── marketplace.json        # lists the plugin(s), schema-validated
