@@ -100,7 +100,12 @@ version consistency, About-vs-tagline). Render-check the banner. A badge that
 reads `unknown` or a dead link means the elevate isn't done.
 
 ## Guardrails
+- **Preserve an existing style.** If the README already has a deliberate voice and
+  structure, improve within it — don't replace it with this template.
+- **Gate big rewrites on human confirmation.** A light pass (badges, TOC, callouts,
+  fixed links, tightened prose) can proceed. A substantial transformation (new
+  voice, restructured sections, dropped content, a banner where none existed) must
+  be presented as a plan and approved by the human first. The human owns the voice.
 - Never fabricate adoption ("used by X"), benchmarks, or API that isn't there.
 - Never emit a registry/CI/community badge without the backing artifact.
-- Match the repo's voice; don't impose unrelated branding.
 - Keep it maintainable — prefer dynamic badges (read live) over hardcoded numbers.

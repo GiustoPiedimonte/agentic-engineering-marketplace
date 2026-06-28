@@ -48,7 +48,23 @@ worse than none — when in doubt, drop it.
    if present. Delegate wide reads or live-URL checks to a read-only research
    subagent when one is available.
 
-3. **Elevate (repo-aware generation).** Follow `references/ELEVATE_PLAYBOOK.md`:
+3. **Respect what's already there — and gate big rewrites.** Before elevating,
+   judge the blast radius:
+   - **If the README already has a deliberate style/voice**, improve *within* it —
+     keep its tone, structure, and identity; fix and strengthen rather than
+     replace. Don't impose this marketplace's look on a repo that already has one.
+   - **Estimate how much would change.** A light pass (badges, a TOC, a few
+     callouts, tightened prose, fixed links) can proceed directly.
+   - **If elevate would substantially transform the README** — replace the voice,
+     restructure most sections, drop existing content, or add a banner where none
+     existed — **STOP and get explicit human confirmation first.** Present the
+     plan: what's detected, the proposed hero/badges/sections, and a summary of
+     what would be removed or rewritten. Apply only after the human approves.
+   Default to asking when unsure. A large rewrite without sign-off is the failure
+   mode to avoid — the human owns the project's voice.
+
+4. **Elevate (repo-aware generation).** Once the scope is agreed, follow
+   `references/ELEVATE_PLAYBOOK.md`:
    - **Badges from reality** — emit only badges with a real backing artifact and a
      live click target (`[![alt](img)](target)`), one consistent style. Add
      **custom chips** specific to this repo (a true static fact → linked to its
@@ -64,11 +80,11 @@ worse than none — when in doubt, drop it.
      contributing → license. Convert load-bearing notes to GitHub callouts
      (`> [!NOTE]/[!TIP]/[!IMPORTANT]`). Clean headings for reliable anchors.
 
-4. **Report specifics.** For audit: ranked pass/fail with `file:line`. For elevate:
+5. **Report specifics.** For audit: ranked pass/fail with `file:line`. For elevate:
    the detected signals, every badge/chip with its justified link target, and the
    sections rebuilt. No "looks fine" — passed or failed.
 
-5. **Verify the result, don't assert it.** Re-run link/anchor/badge checks and
+6. **Verify the result, don't assert it.** Re-run link/anchor/badge checks and
    render-check the banner after editing; show the output. Confirm one H1, every
    fence language-tagged, version consistent across README and manifest(s), and the
    README one-liner matching the GitHub `About`. A badge that reads `unknown` or a
