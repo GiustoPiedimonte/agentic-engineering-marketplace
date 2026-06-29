@@ -34,6 +34,7 @@ Never go prompt → code: *shape → decide → execute → measure → eval.*
 
 - [Why this exists](#why-this-exists)
 - [Install](#install)
+- [Staying updated](#staying-updated)
 - [Quickstart](#quickstart)
 - [What you get](#what-you-get)
 - [Requirements](#requirements)
@@ -83,6 +84,26 @@ claude plugin install agentic-engineering@giusto-agentic
 The five commands and four agents become available. New components load on your
 next Claude Code session.
 
+## Staying updated
+
+Third-party marketplaces **don't auto-update by default** (a deliberate safety
+choice — installed plugins shouldn't change under you silently). Two ways to stay
+current with new releases:
+
+- **Hands-off (recommended).** Enable auto-update for this marketplace once:
+  `/plugin` → **Marketplaces** → `giusto-agentic` → toggle auto-update on. Claude
+  Code then refreshes it on startup and, when a new version ships, **notifies you**
+  to run `/reload-plugins` — no manual checking.
+- **Manual.** Pull the latest yourself:
+  ```text
+  /plugin marketplace update giusto-agentic
+  /plugin update agentic-engineering@giusto-agentic   # and/or github-keeper@…
+  ```
+  then `/reload-plugins` (or restart). The CLI equivalents are `claude plugin …`.
+
+Releases are versioned — see the [releases](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/releases)
+and the [CHANGELOG](CHANGELOG.md).
+
 ## Quickstart
 
 A typical end-to-end cycle, from idea to merged code:
@@ -128,14 +149,16 @@ review fan out across many agents; only one writer ever touches the code.
 ### Hooks
 
 - **PostToolUse** — auto-format/lint edited TS/Py files (only if `eslint`/`ruff` are present).
-- **Stop** — when a turn leaves uncommitted changes, a gate that asks for the
-  project's own verification output before ending (silent when the tree is clean).
+- **Stop** — an **advisory** reminder: when a turn leaves uncommitted changes, it
+  prints a one-line nudge to run the project's own checks before declaring done.
+  It never blocks and never re-invokes the model (so it can't loop, even with
+  background workflows); it's silent when the tree is clean.
 
-> [!IMPORTANT]
-> The Stop hook means a turn with uncommitted changes won't quietly end on "looks
-> good." It asks you to run *this project's* checks (tests / build / lint, or a
-> validate script) and show the output — verification is part of *done*. It stays
-> silent on clean turns, and doesn't assume checks the repo doesn't have.
+> [!NOTE]
+> The Stop hook is a *reminder*, not a gate — it surfaces "you have uncommitted
+> changes; run this project's checks and show the output" and then gets out of the
+> way. The real verification discipline lives in the `/ship` and `executor` prompts;
+> the hook just keeps it front-of-mind without ever blocking the turn.
 
 ## Requirements
 

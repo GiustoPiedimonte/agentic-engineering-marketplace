@@ -19,7 +19,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "input=$(cat); echo \"$input\" | grep -q '\"stop_hook_active\": *true' && exit 0; git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0; [ -z \"$(git status --porcelain 2>/dev/null)\" ] && exit 0; echo \"Uncommitted changes are present. Before ending, run THIS project's own verification — its tests / build / lint, or its validate script — and show the output as evidence, then commit. Verification is part of done. If the project genuinely has no such check, say so in one line and stop.\" >&2; exit 2",
+            "command": "git rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0; [ -n \"$(git status --porcelain 2>/dev/null)\" ] && echo \"Reminder: uncommitted changes present — if code changed this turn, run the project's own checks (tests / build / lint, or its validate script) and show the output before declaring it done.\" >&2; exit 0",
             "timeout": 15
           }
         ]

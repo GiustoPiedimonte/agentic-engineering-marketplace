@@ -32,9 +32,10 @@ and review delegated to isolated subagents, and verification as a gate.
 
 **Hooks**
 - PostToolUse: auto-format/lint edited TS/Py files (only if eslint/ruff present).
-- Stop: when a turn leaves uncommitted changes, a gate that asks for the project's
-  own verification output before ending — silent on clean turns, and artifact-neutral
-  (it references the repo's real checks, not assumed typecheck/build/test).
+- Stop: an advisory reminder — when a turn leaves uncommitted changes, it prints a
+  one-line nudge to run the repo's own checks before declaring done. Never blocks,
+  never re-invokes the model (can't loop, even with background workflows), silent on
+  clean turns, artifact-neutral (no assumed typecheck/build/test).
 
 ## Install
 

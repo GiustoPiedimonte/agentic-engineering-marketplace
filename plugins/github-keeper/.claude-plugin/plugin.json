@@ -1,6 +1,6 @@
 {
   "name": "github-keeper",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Make a public GitHub repo well-made and honest. /readme audits and elevates the README (banner, honest live badges, repo-specific chips); /opensource adds the community-health files (code of conduct, contributing, security, issue/PR templates), an honest CI gate, and the right repo settings. Honesty-first; confirms outward actions.",
   "author": {
     "name": "Giusto Piedimonte"

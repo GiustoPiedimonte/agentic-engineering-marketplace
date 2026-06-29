@@ -10,7 +10,7 @@
     {
       "name": "agentic-engineering",
       "description": "Spec-driven agentic engineering: /pitch -> /adr -> /ship -> /measure -> /eval with executor, researcher, reviewer, measurer subagents and verification hooks.",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "source": "./plugins/agentic-engineering",
       "category": "development",
       "author": {
@@ -20,7 +20,7 @@
     {
       "name": "github-keeper",
       "description": "Make a public GitHub repo well-made and honest: /readme audits & elevates READMEs (sweeps all READMEs by tier; banner, honest live badges, repo-specific chips); /opensource adds community-health files, an honest CI gate, and the right repo settings. Honesty-first; confirms outward actions.",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "source": "./plugins/github-keeper",
       "category": "documentation",
       "author": {

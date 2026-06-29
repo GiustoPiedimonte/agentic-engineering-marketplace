@@ -66,6 +66,17 @@ A CI badge is only honest if a workflow exists and means something. Add
 Only after the workflow is committed, add the CI badge (linking to the workflow).
 Verify it doesn't render `unknown`.
 
+### If the repo is itself a distributable package/plugin
+
+Document **how users get updates** — it's part of being well-made, and easy to
+forget. State the project's release/versioning convention and, crucially, how an
+installed user stays current (e.g. for a Claude Code plugin marketplace: users
+don't auto-update by default — tell them they can enable per-marketplace
+auto-update for hands-off updates + reload notifications, or pull manually). Pair
+it with a `CHANGELOG.md` and versioned releases so an "update available" actually
+means something. Bumping the version on each release is what makes update
+detection work at all.
+
 ## Step 5 — Repo settings (with confirmation)
 
 Apply via `gh`, confirming outward changes:
@@ -100,3 +111,4 @@ Apply via `gh`, confirming outward changes:
 - [ ] CI workflow + honest CI badge
 - [ ] Settings: issues on, wiki/projects off unless used, delete-branch-on-merge
 - [ ] Topics set (searchable, true)
+- [ ] If distributable (package/plugin): update/versioning story documented + CHANGELOG
