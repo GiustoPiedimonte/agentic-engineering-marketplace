@@ -9,7 +9,7 @@ description: >
   structure) — every signal derived from the actual repo. Honesty-first: never adds
   a signal the repo can't back. Produces a verifiable result, then re-verifies.
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
 ---
 
 # /readme — audit & elevate a public README
@@ -18,8 +18,9 @@ A README is a contract: every claim — version, install command, link, badge �
 implicitly promised true. This skill keeps that contract honest **and** raises the
 README to a high standard.
 
-`$ARGUMENTS` is an optional path and a mode. **With no path, discover and handle
-every README in the repo**, not just the root one. Match files whose *basename* is
+`$ARGUMENTS` is an optional path plus either a mode keyword or a **free-form goal**.
+**With no path, discover and handle every README in the repo**, not just the root
+one. Match files whose *basename* is
 `README.md` (or `README.<lang>.md` for translations) — not a substring match, which
 would wrongly pull in reference docs like `README_CHECKLIST.md`:
 
@@ -32,12 +33,17 @@ This finds the root README plus nested ones (`plugins/*/README.md`,
 (see below); don't impose the landing-page look on a component reference. Pass a
 path to target a single file.
 
-Modes:
+Modes — a keyword, **or a free-form goal**:
 
+- **A free-form intent** (e.g. "add a quickstart", "make the hero punchier", "just
+  the banner", "add an FAQ") — do **only that**, at minimal scope. Mention adjacent
+  issues you notice; don't touch them without a fresh ok. This is the default when a
+  goal is given without a keyword — collaborate on the intent, don't audit-everything
+  or rebuild-everything.
 - **`audit`** — report only: ranked pass/fail findings, no edits.
 - **`elevate`** (default for a thin/generic/empty README) — rebuild it to a
-  polished, **repo-specific** README: banner, honest badges, custom chips, funnel
-  structure, real examples.
+  polished, **project-faithful** README (see the fidelity gate): a *fitting* hero,
+  honest badges, an adaptive element set, funnel structure, real examples.
 - **`fix`** — apply the audit's fixes to an already-good README without a full
   rebuild.
 
@@ -46,6 +52,35 @@ you cannot back. No CI badge without a workflow, no version badge a release will
 outdate, no registry badge without a published package, no "used by" without real
 users, no vanity chip without a link to its proof. A broken or dishonest badge is
 worse than none — when in doubt, drop it.
+
+## The fidelity gate (speak the project's language, not ours)
+
+Second only to the honesty gate. **The visual, the voice, and the set of elements
+must come from the target project's own communication — not from this marketplace's
+house style.** A Python library, a UI app, an infra tool, and a CLI each speak a
+different language; imposing our terminal-card banner and funnel on all of them is
+both low-quality and a quiet dishonesty (an identity that isn't theirs).
+
+So, before generating anything:
+
+1. **Read the project's identity** — existing logo/screenshots, brand palette (from
+   a logo, CSS, or site), wordmark, the current README's tone, the domain and
+   audience, any website. (See the detection table in `ELEVATE_PLAYBOOK.md`.)
+2. **Propose a direction, then confirm.** Present the archetype + palette + voice
+   ("serious library → clean typographic hero, palette from the logo, **no**
+   terminal-card") and **wait for the human**. Never autonomously generate a visual —
+   a wrong guess should cost a sentence, not a rebuild.
+3. **Generate within that language**, only after approval.
+
+Two hard rules:
+- **Restraint is a valid output.** For a serious tool the faithful choice may be
+  *no banner* — a clean typographic hero. Recommending less is fidelity, not laziness.
+- **Honesty outranks fidelity.** If a project's vibe would invite a dishonest signal
+  (a fake "used by", an overclaiming banner), honesty wins — always.
+
+Our `assets/banner.svg` is **one archetype** (CLI/dev-tool), not the template. The
+same gate governs the whole **adaptive proposal set** — badges, links, sections —
+tailored to the project *and* the maintainer (see `ELEVATE_PLAYBOOK.md`).
 
 ## README tiers (not every README is the front page)
 
@@ -95,17 +130,20 @@ plain component reference is *correct*, not a defect; a plain landing page is a 
    Default to asking when unsure. A large rewrite without sign-off is the failure
    mode to avoid — the human owns the project's voice.
 
-4. **Elevate (repo-aware generation).** Once the scope is agreed, follow
-   `references/ELEVATE_PLAYBOOK.md`:
-   - **Badges from reality** — emit only badges with a real backing artifact and a
-     live click target (`[![alt](img)](target)`), one consistent style. Add
-     **custom chips** specific to this repo (a true static fact → linked to its
-     proof, e.g. `skills-5` → the `skills/` dir).
-   - **Hero** — a centered `<h1>`, badge row, plain-English tagline, nav row. For
-     the signature look, generate an SVG **banner** parameterized to the repo
-     (wordmark, palette, and a chips row = the repo's real commands / modules /
-     pipeline), committed to `assets/`. Use this marketplace's own
-     `assets/banner.svg` as the template.
+4. **Elevate (project-faithful generation).** Once the direction is agreed (fidelity
+   gate — propose-and-confirm), follow `references/ELEVATE_PLAYBOOK.md`:
+   - **Hero — the fitting archetype, not ours by default.** Pick the archetype that
+     matches the project (typographic for a library, screenshot for a UI, diagram for
+     infra, terminal-card for a CLI, illustrated for a creative tool — or **none**,
+     a clean type hero, when that's the faithful choice). Generate it in the
+     project's palette/voice, committed to `assets/`. The terminal-card
+     `assets/banner.svg` here is one example (the CLI archetype), not the template.
+   - **Adaptive proposal set** — badges, links, and sections proposed from what the
+     project *and* maintainer actually have (a community → a community badge +
+     section; a docs site → a docs badge; sponsors → a support line; …). Propose from
+     what's detectable; ask at most 2–3 things you can't detect. Every element bound
+     by the honesty gate (only if real, live click target `[![alt](img)](target)`)
+     and confirmed before adding. See the proposal-set table in the playbook.
    - **Funnel** — hero → why-this-exists (claim + real proof) → TOC (if ≥100 lines
      or 5+ sections) → install (the *real* command) → quickstart (a *real* example)
      → features (from actual capabilities) → requirements → maintaining →

@@ -10,11 +10,13 @@ those gaps, with every signal derived from the actual repo.
 
 ## Skills
 
-- **`/readme`** — audit *and* elevate the README. Rebuilds a thin/generic one into
-  a polished, **repo-specific** README: an SVG banner, honest live badges, custom
-  chips (a true fact linked to its proof), cognitive-funnel structure, and a
-  quickstart lifted from real code. Preserves an existing voice; gates big rewrites
-  on confirmation.
+- **`/readme`** — audit *and* elevate a README, **in the project's own language**.
+  The **fidelity gate** derives the hero archetype (typographic, screenshot,
+  diagram, terminal-card, or *none*), palette, voice, badges, and sections from the
+  target project's identity — proposing a direction and confirming before it
+  generates, never imposing a house style. Accepts a **free-form goal** ("add a
+  quickstart", "just the banner") to do only that. Honest, live signals only;
+  preserves an existing voice.
 - **`/opensource`** — make the repo public-ready: the community-health files
   (Code of Conduct, Contributing, Security, issue/PR templates), an **honest CI
   gate**, and the right repo settings (issues, private vulnerability reporting,

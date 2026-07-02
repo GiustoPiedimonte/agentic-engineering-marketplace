@@ -6,6 +6,16 @@ plugin versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Changed
+- **github-keeper `/readme` — the fidelity gate** (0.4.0): elevate now derives the
+  hero archetype (typographic / screenshot / diagram / terminal-card / **none**),
+  palette, voice, badges, and sections from the **target project's own identity**
+  and **proposes-and-confirms** before generating — instead of imposing our
+  terminal-card house style. Adds an **adaptive proposal set** (badges/links/sections
+  from the project + maintainer) and **free-form intent** edits ("do just this").
+  Our `assets/banner.svg` is now one archetype example, not the template. See
+  ADR-001. (skill 0.3.0)
+
 ## [0.3.3] - 2026-06-29
 
 ### Added

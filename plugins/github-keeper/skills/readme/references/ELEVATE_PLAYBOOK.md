@@ -72,25 +72,59 @@ auto-update (shields fetches live, ~5-min cache) — none need manual upkeep. Bu
 
 The gate isn't just "is it true?" but "does it help, even six months from now?"
 
-## Step 3 — Build the hero
+### The adaptive proposal set (project + maintainer, not a fixed list)
 
-Two tiers; pick by ambition and asset support.
+Badges are one instance of a wider idea: **propose the elements — badges, links,
+and sections — that fit *this* project and *this* maintainer.** Propose from what's
+**detectable**; ask at most **2–3** high-value questions for what isn't (a
+community? sponsors? socials?). Never interrogate, never block on answers.
 
-**Minimal (always safe):** a centered block — `<h1 align="center">name</h1>`, the
-badge row, a one-line plain-English tagline, a nav row
-(`[Install](#install) · [Quickstart](#quickstart) · [Docs](…)`).
+| Detected / asked | Propose |
+|---|---|
+| a community (Discord/Slack/forum) | a community badge **and** a Community section + invite |
+| GitHub Sponsors / Open Collective | a sponsor badge + a short support line |
+| a docs site | a docs badge + a Documentation link/section |
+| published to a registry | version / downloads badges |
+| active maintainer socials (X, Mastodon, blog) | a follow link in the footer |
+| a company / org behind it | a "built by" line, if the maintainer wants it |
+| screenshots / a CLI demo | a screenshot or an asciinema demo block |
 
-**Full (signature look):** add an SVG banner at the top. Generate a terminal-card
-SVG parameterized to the repo (see `assets/banner.svg` here as the template):
-- a rounded dark card with three traffic-light dots and a faint title-bar label;
-- a prompt line showing the real install command (`$ <install>`);
-- the wordmark in a gradient (palette from the repo's brand or language);
-- a **chips row** = the repo's primary commands / subpackages / pipeline stages
-  (this is the most repo-specific element — derive it from the actual CLI verbs,
-  workspaces, or workflow), each chip a labeled rounded rect;
-- a caption line of the project's organizing idea.
-Commit it to `assets/` and reference with descriptive `alt`. Verify it renders
-(it must be static SVG — GitHub strips scripts).
+Every proposal is bound by the **honesty gate** (only if it's real) and
+**propose-and-confirm** (never added unasked). The output is a menu tailored to the
+project and person — "you have a Discord, want a community badge + section?" — not a
+one-size checklist.
+
+## Step 3 — Build the hero (propose the archetype, confirm, then generate)
+
+The hero must fit the project, not this marketplace. **Propose a direction and get a
+yes before generating any visual** — never autonomously produce a banner.
+
+**1. Classify the archetype** from the identity signals (Step 1):
+
+| Archetype | Fits | Hero |
+|---|---|---|
+| Terminal-card | CLI, dev-tool, agent | dark card + prompt + chips (`assets/banner.svg` here is this example) |
+| Typographic | library, framework, SDK | clean wordmark + type, palette from the brand |
+| Screenshot-led | UI / app / dashboard | a real, current screenshot |
+| Diagram-led | infra, protocol, data | an architecture / flow diagram |
+| Illustrated | creative / consumer tool | an illustrated, branded hero |
+| **Minimal / none** | serious tools (à la ruff/biome) | **no banner** — just a clean `<h1>` type hero |
+
+**2. Propose + confirm.** State the chosen archetype, the palette (from the
+logo/brand), and the voice — e.g. "typographic hero, indigo from your logo, no
+terminal-card." Wait for approval. "No banner is the faithful choice here" is a
+legitimate proposal.
+
+**3. Generate within that language** (only after approval):
+- **Minimal (always safe):** a centered `<h1>`, the badge row, a one-line tagline,
+  a nav row (`[Install](#install) · [Quickstart](#quickstart) · [Docs](…)`).
+- **A generated banner**, when the archetype calls for one: author a *static* SVG in
+  the project's palette and idiom. For the **terminal-card** archetype,
+  `assets/banner.svg` here is a worked example — a dark card with traffic-light dots,
+  a prompt line with the real install command, a gradient wordmark, a chips row of
+  the project's real commands/modules, and a caption. Other archetypes take their own
+  form (type, screenshot, diagram, illustration). Commit to `assets/` with a
+  descriptive `alt`; verify it renders (static SVG only — GitHub strips scripts).
 
 ## Step 4 — Fill the funnel with repo-derived content
 
