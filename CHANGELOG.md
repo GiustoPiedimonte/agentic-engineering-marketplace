@@ -6,6 +6,8 @@ plugin versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-06-29
+
 ### Added
 - **README "Staying updated" section** — documents the hands-off path (enable
   auto-update for the marketplace once → Claude Code notifies on new versions and
@@ -53,7 +55,8 @@ plugin versions follow [Semantic Versioning](https://semver.org).
   `/ship`, `/measure`, `/eval`; executor / researcher / reviewer / measurer
   subagents; format + verification hooks; the dark-launch eval-gated loop.
 
-[Unreleased]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.3...HEAD
+[0.3.3]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.0...v0.3.2
 [0.3.0]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/releases/tag/v0.2.0
