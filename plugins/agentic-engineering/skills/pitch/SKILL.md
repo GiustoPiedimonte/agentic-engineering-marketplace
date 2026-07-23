@@ -6,7 +6,7 @@ description: >
   out", "let's plan <feature>", or starts non-trivial work without an agreed
   approach. Produces a Shape Up style pitch (the source of truth) via interview.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # /pitch — shape the spec before the code
@@ -33,12 +33,20 @@ go prompt -> code for non-trivial work; shape first.
    `researcher` subagent so the main context stays clean. Inventory what already
    exists ("substrate already present") so the pitch builds on it, not over it.
 
-3. **Write the pitch** to `docs/pitches/<slug>.md` using the structure in
-   `references/PITCH_TEMPLATE.md`. The pitch must be self-contained: name the
-   files/interfaces involved, state what's out of scope, and end with a
-   "Done-when" checklist that includes an end-to-end verification.
+3. **Name the graph.** State which of the five graphs this work touches (execution
+   / memory / audit / capability / coordination — usually one primary) and which
+   edges cross a human gate or an irreversible action (the severity×reversibility
+   calls). If the work is a fan-out / audit / review / research job, sketch the
+   nodes and edges — see the `graph` skill's `GRAPH_MODEL.md`. This makes the gate
+   question explicit before any code, not after.
 
-4. **Stop for review.** Show the pitch, ask for gaps/corrections. Do not start
+4. **Write the pitch** to `docs/pitches/<slug>.md` using the structure in
+   `references/PITCH_TEMPLATE.md` (including the `Graph` and `Gated edges` fields).
+   The pitch must be self-contained: name the files/interfaces involved, state
+   what's out of scope, and end with a "Done-when" checklist that includes an
+   end-to-end verification.
+
+5. **Stop for review.** Show the pitch, ask for gaps/corrections. Do not start
    planning or coding until the user approves. Fix the shape, not the code.
 
 Lifecycle convention: active pitches live in `docs/pitches/` (keep WIP low,

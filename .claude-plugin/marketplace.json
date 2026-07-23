@@ -1,16 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "giusto-agentic",
-  "version": "0.3.3",
-  "description": "Agentic engineering tooling: a spec-driven shape/decide/execute/measure/eval workflow with adversarial review, plus README maintenance.",
+  "version": "0.4.0",
+  "description": "Agentic engineering tooling: a spec-driven shape/decide/execute/measure/eval workflow that treats work as a graph — fan-out across subagents with adversarial verification — plus README maintenance.",
   "owner": {
     "name": "Giusto Piedimonte"
   },
   "plugins": [
     {
       "name": "agentic-engineering",
-      "description": "Spec-driven agentic engineering: /pitch -> /adr -> /ship -> /measure -> /eval with executor, researcher, reviewer, measurer subagents and verification hooks.",
-      "version": "0.2.2",
+      "description": "Spec-driven agentic engineering as graph engineering: /pitch -> /adr -> /ship -> /measure -> /eval, plus /graph to fan work out across executor, researcher, reviewer, verifier, measurer subagents (diamond / router / verifier / cycle) with verification hooks.",
+      "version": "0.3.0",
       "source": "./plugins/agentic-engineering",
       "category": "development",
       "author": {
