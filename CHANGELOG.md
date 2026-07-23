@@ -6,6 +6,8 @@ plugin versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-23
+
 ### Added
 - **agentic-engineering — graph engineering** (0.3.0): a new `/graph` skill that
   turns a straight-line task into an execution graph — fan out independent work
@@ -78,7 +80,8 @@ plugin versions follow [Semantic Versioning](https://semver.org).
   `/ship`, `/measure`, `/eval`; executor / researcher / reviewer / measurer
   subagents; format + verification hooks; the dark-launch eval-gated loop.
 
-[Unreleased]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.3...HEAD
+[Unreleased]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.3...v0.4.0
 [0.3.3]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.3.0...v0.3.2
 [0.3.0]: https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/compare/v0.2.0...v0.3.0
