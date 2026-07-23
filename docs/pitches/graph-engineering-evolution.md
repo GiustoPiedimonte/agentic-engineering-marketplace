@@ -1,9 +1,9 @@
 # Pitch — graph-engineering-evolution: make the plugin's graph explicit
 
-- **Status:** shaped
+- **Status:** shipped
 - **Appetite:** small batch (one cycle — additive skill + agent + refs + manifests)
 - **Created:** 2026-07-23
-- **PR:** <link when building/done>
+- **PR:** [#1](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/pull/1) (implementation), [#2](https://github.com/GiustoPiedimonte/agentic-engineering-marketplace/pull/2) (root README/CHANGELOG catch-up), released as v0.4.0
 - **ADR:** ADR-002 (agentic engineering is graph engineering)
 - **Graph:** execution (adds the `/graph` runtime); touches coordination + audit at the edges
 - **Gated edges:** none new — this is additive tooling. The *content* it ships makes existing gates explicit (the human gate as a conditional edge; acting nodes project into audit).
@@ -64,10 +64,12 @@ subagent keeps its own context.
 - No new dependency. No breaking the plugin name or command names.
 
 ## Done-when
-- [ ] `python scripts/ci_validate.py` → "✓ all checks passed".
-- [ ] `/graph`, `/pitch` … `/eval` all appear; five agents under `/agents`.
+- [x] `python scripts/ci_validate.py` → "✓ all checks passed".
+- [x] `/graph`, `/pitch` … `/eval` all appear; five agents under `/agents`.
 - [ ] End-to-end: `/graph "audit every file under X for Y"` produces a workflow that
-      fans out one node per file and verifies findings before reporting.
+      fans out one node per file and verifies findings before reporting. *(not yet
+      run in a live session — open follow-up, same as the readme-identity-redesign
+      pitch's e2e proof.)*
 
 ## Reference materials
 - ADR-002 · `hq/foundations/AGENTIC-GRAPH-ENGINEERING.md` (the Centria doctrine this
