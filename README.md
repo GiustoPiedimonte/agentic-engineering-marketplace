@@ -24,7 +24,12 @@ Never go prompt → code: *shape → decide → execute → measure → eval.*
  │ /pitch  │──▶│  /adr   │──▶ │  /ship   │──▶ │ /measure  │──▶ │  /eval   │
  │ the spec│   │ the why │    │ the cycle│    │ the data  │    │ the modes│
  └─────────┘   └─────────┘    └──────────┘    └───────────┘    └────┬─────┘
-      ▲                                                              │
+      ▲              │                                              │
+      │              ▼                                              │
+      │         ┌─────────┐                                         │
+      │         │ /graph  │  fan breadth work out across a fleet,   │
+      │         │ fan-out │  verify each finding, converge          │
+      │         └─────────┘                                         │
       └───────────────  flip-criteria · real failures  ◀────────────┘
 
    readers fan out · one writer at a time · review is a gate · data decides
@@ -53,9 +58,11 @@ green build gets mistaken for a correct one.
 This plugin encodes a different discipline, distilled from a real, opinionated
 agentic-engineering practice: **shape the work into a written spec first, record
 the hard decisions, delegate execution to a single serialized writer with an
-adversarial reviewer as a gate, and let real data — not a passing test — decide
-what ships.** Five skills, four subagent roles, and verification hooks make that
-discipline portable to any repo.
+adversarial reviewer as a gate, fan breadth work out across a fleet instead of
+chaining it one task at a time, and let real data — not a passing test — decide
+what ships.** Six skills, five subagent roles, and verification hooks make that
+discipline portable to any repo — see [the graph model](plugins/agentic-engineering/skills/graph/references/GRAPH_MODEL.md)
+for the underlying lens.
 
 > [!NOTE]
 > These are early, opinionated tools — structurally validated and dogfooded on
@@ -81,7 +88,7 @@ claude plugin install agentic-engineering@giusto-agentic
 ```
 </details>
 
-The five commands and four agents become available. New components load on your
+The six commands and five agents become available. New components load on your
 next Claude Code session.
 
 ## Staying updated
@@ -109,13 +116,17 @@ and the [CHANGELOG](CHANGELOG.md).
 A typical end-to-end cycle, from idea to merged code:
 
 1. **Shape it.** `/pitch "add Google OAuth to login"` — an interview produces
-   `docs/pitches/oauth.md`. Approve the shape before any code is written.
+   `docs/pitches/oauth.md`, naming the graph the work touches and its gated edges.
+   Approve the shape before any code is written.
 2. **Decide it.** `/clear`, then `/adr` if a consequential choice was made (e.g.
    session strategy). Behavior-altering work records a `Flip-criteria`.
-3. **Ship it.** `/clear`, then `/ship oauth` — the `executor` implements and opens
+3. **Fan it out (if it has breadth).** `/clear`, then `/graph` for audits, reviews,
+   or research that spans many independent pieces — fan out across a fleet of
+   subagents, verify each finding, converge.
+4. **Ship it.** `/clear`, then `/ship oauth` — the `executor` implements and opens
    a PR; the `reviewer` checks the diff against the pitch in a fresh context; you
    fix the real gaps and merge.
-4. **Prove it.** Behavior-altering changes ship dark (flag-OFF), then `/measure`
+5. **Prove it.** Behavior-altering changes ship dark (flag-OFF), then `/measure`
    against the recorded criterion flips them on — on real data, not a green build.
 
 > [!TIP]
@@ -128,8 +139,9 @@ A typical end-to-end cycle, from idea to merged code:
 
 | Command | What it does |
 |---|---|
-| `/pitch` | Shape a feature into a Shape Up pitch (the spec / source of truth) via interview, before any code. |
+| `/pitch` | Shape a feature into a Shape Up pitch (the spec / source of truth) via interview, before any code. Names the graph the work touches and its gated edges. |
 | `/adr` | Record a consequential decision in an append-only `docs/DECISIONS.md`, with optional dark-launch `Gate`/`Flip-criteria`. |
+| `/graph` | Turn a straight-line task into an execution graph: fan breadth work (audits, reviews, research) out across a fleet of subagents, verify findings, converge. Built on dynamic workflows — coordination costs zero model tokens. |
 | `/ship` | Execute an approved pitch as a closed-scope cycle: pre-spawn filter, doc-bundle, standard PR format, adversarial review, dark-launch flip. |
 | `/measure` | Unblock a decision with a read-only, data-backed flip/keep/cut verdict — never guesses, never writes. |
 | `/eval` | Make eval the unit of progress: build the harness from *real* failures, localize where a pipeline breaks (transition-failure matrix), feed flip-criteria. |
@@ -143,7 +155,8 @@ review fan out across many agents; only one writer ever touches the code.
 |---|---|
 | `executor` | The serialized writer: implements one closed scope, keeps build/tests green, opens a PR, never merges. |
 | `researcher` | Fan-out, read-only research with cited, verified findings; prefers current docs over memory. |
-| `reviewer` | Adversarial pre-merge gate; 8-check rubric; returns MERGE / ADJUST / REJECT. |
+| `reviewer` | Adversarial pre-merge gate over a whole PR diff; 8-check rubric; returns MERGE / ADJUST / REJECT. |
+| `verifier` | General single-claim adversarial node: given one finding, tries to kill it and returns real/not-real. Fan-out safe — run several in parallel as a gate on a graph edge. |
 | `measurer` | Read-only data verdicts to unblock measure-gated decisions. |
 
 ### Hooks
@@ -200,10 +213,16 @@ agentic-engineering-marketplace/
 │   └── marketplace.json        # lists the plugin(s), schema-validated
 ├── assets/
 │   └── banner.svg
+├── docs/
+│   ├── DECISIONS.md            # append-only ADR log
+│   └── pitches/                # shaped specs, one per feature
 ├── plugins/
-│   └── agentic-engineering/    # the plugin itself
+│   ├── agentic-engineering/    # the spec-driven / graph-engineering plugin
+│   │   ├── .claude-plugin/plugin.json
+│   │   └── skills/  agents/  hooks/  README.md
+│   └── github-keeper/          # README + open-source maintenance plugin
 │       ├── .claude-plugin/plugin.json
-│       └── skills/  agents/  hooks/  README.md
+│       └── skills/  README.md
 ├── LICENSE
 └── README.md
 ```
@@ -212,10 +231,11 @@ agentic-engineering-marketplace/
 ## Also in this marketplace
 
 [**github-keeper**](plugins/github-keeper/README.md) — make a public repo
-well-made and honest. `/readme` audits and elevates the README (honest clickable
-badges, repo-specific banner and chips, cognitive-funnel structure); `/opensource`
-adds the community-health files, an honest CI gate, and the right repo settings.
-Install it with `/plugin install github-keeper@giusto-agentic`.
+well-made and honest. `/readme`'s **fidelity gate** derives the hero archetype,
+palette, voice, badges, and sections from the *target project's own identity* and
+proposes-and-confirms before generating, instead of imposing a house style;
+`/opensource` adds the community-health files, an honest CI gate, and the right
+repo settings. Install it with `/plugin install github-keeper@giusto-agentic`.
 
 ## Contributing
 
