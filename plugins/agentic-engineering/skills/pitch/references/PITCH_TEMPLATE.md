@@ -5,6 +5,8 @@
 - **Created:** YYYY-MM-DD
 - **PR:** <link when building/done>
 - **ADR:** <link if this needed a recorded decision>
+- **Graph:** <which of the five graphs this touches — execution / memory / audit / capability / coordination; usually one primary>
+- **Gated edges:** <which arcs cross a human gate or an irreversible action — the severity×reversibility calls in this work; "none" if purely additive/read-only>
 
 > Origin: why now. Link to research reports, prior decisions, or the trigger.
 
@@ -21,6 +23,11 @@ doesn't fit, narrow the problem, don't grow the budget.
 The shape, at the level of "what it does", not line-by-line code. Use tables for
 architecture choices and their trade-offs. Slice into independently shippable
 pieces where possible.
+
+If the work is a fan-out / audit / review / research job, **draw the graph**: name
+the nodes, the edges (what data crosses), the topology (diamond / router / verifier
+/ cycle), and which nodes run in parallel. An independent node is one whose input
+does not read another node's output.
 
 ## Out of scope
 What we are deliberately NOT doing in this pitch.

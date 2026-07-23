@@ -6,6 +6,19 @@ plugin versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+### Added
+- **agentic-engineering — graph engineering** (0.3.0): a new `/graph` skill that
+  turns a straight-line task into an execution graph — fan out independent work
+  across a fleet of subagents, verify findings, and converge — built on dynamic
+  workflows (coordination costs zero model tokens). Ships `GRAPH_MODEL.md` (the
+  node/edge grammar, the diamond/router/verifier/cycle topologies, the five
+  graphs, topology-first principles) and a copy-ready `WORKFLOW_LIBRARY.md` with
+  six starter scripts (security-sweep, pr-review, cited-research, consistency-sweep,
+  ecosystem-scan, discovery-until-dry). Adds a general **`verifier`** agent (a
+  single-claim adversarial node, fan-out safe) alongside the PR-level `reviewer`.
+  `/pitch` now names the **graph** a piece of work touches and its **gated edges**
+  (severity×reversibility) before any code. See ADR-002.
+
 ### Changed
 - **github-keeper `/readme` — the fidelity gate** (0.4.0): elevate now derives the
   hero archetype (typographic / screenshot / diagram / terminal-card / **none**),
