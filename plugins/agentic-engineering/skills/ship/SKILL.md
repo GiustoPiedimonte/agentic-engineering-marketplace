@@ -31,8 +31,35 @@ Before delegating to an executor subagent, answer three questions. If any is
 
 See `references/EXECUTION_PLAYBOOK.md` for the full recipe.
 
+### A pitch slice is not a PR slice
+
+The most common way this filter passes and the cycle still fails: `/pitch` carves
+the work into **conceptual** slices — coherent chunks of product thinking — and
+those are usually two to four PRs each. Handing one to an executor as a single
+scope looks fine (it *is* closed, it *is* shaped) and then the agent spends an
+hour understanding half the codebase before it can write a line.
+
+Size the scope by **steps that must happen in order**, not by how the pitch
+reads. Reliability compounds at roughly 0.85 per serial step: four steps is
+~52%, six is ~38%. A long serial chain is a scope problem, not a model problem —
+the same guardrail `/graph` states for fan-out applies to the single writer.
+
+Practical test: *could one PR of a few hundred lines close this, and would a
+reviewer read it in one sitting?* If not, cut. Ship the narrowest version that
+proves the shape works — one path end to end, one tool, one route — and let the
+rest follow as its own cycle. If the shape is wrong you find out on two hundred
+lines instead of two thousand.
+
 ## 2. Execute (delegated or direct)
 
+- **Fan out the reading before you spawn the writer.** "Parallelize readers,
+  serialize writers" is the law at the top of this skill, and the readers are
+  the half people skip. An executor handed a bare pitch spends its first stretch
+  doing breadth work in series — inventorying the substrate, reading the local
+  conventions, grepping for what already exists — while the writer's context
+  fills with material it will mostly not need. That reading is independent, so
+  it belongs in `/graph`: a few researchers with distinct mandates, converging
+  into a doc-bundle the writer receives already assembled.
 - For a qualifying cycle, delegate to the `executor` subagent. It reads the
   doc-bundle first, implements ONE closed scope, commits as it goes, keeps the
   build + tests green, and opens a PR — **it never merges**.
@@ -40,6 +67,26 @@ See `references/EXECUTION_PLAYBOOK.md` for the full recipe.
   failing test that encodes a "Done-when" item, make it pass), follow existing
   patterns, address root causes (never suppress an error to pass a check).
 - Show evidence, not assertions: paste the commands run and their output.
+
+### Watching a delegated writer
+
+A background executor is quiet by design, and quiet is easy to misread as
+stuck — which leads to killing an agent that was minutes from done. Know where
+the real signals are before you need them:
+
+- **`git log` in its worktree** is the honest one. An executor commits as it
+  goes, so the branch moves long before anything else does.
+- **The working tree** (`git status`) shows work in flight that hasn't been
+  committed yet.
+- **The transcript or output file is usually written on completion**, so an
+  empty one says nothing at all about progress.
+- **A message you send arrives on its next tool call.** Asking "are you alive?"
+  is answered by exactly the agent that doesn't need asking, and ignored by the
+  one that does.
+
+Judge by the branch, not by the silence. And if a writer really has stalled,
+the useful question is whether its scope was one closed scope or four —
+resurrecting it unchanged tends to reproduce the stall.
 
 ## 3. Adversarial review (before "done")
 
@@ -80,6 +127,17 @@ what changed, test plan with evidence, no autonomous merge). On merge: move the
 pitch to `docs/pitches/done/` with the PR link, record any decision (with its
 `Gate`/`Flip-criteria` if behavior-altering) via `/adr`, and update the relevant
 CLAUDE.md / docs in the same change.
+
+Fill in "docs read" for real. It is the field most often left blank and the one
+that pays: listing what you read is how a reviewer sees what you *didn't*, and
+the doc you skipped is usually the one that already documented the trap you just
+walked into.
+
+Ask who outside this repo needs to know, and answer it when the PR opens rather
+than later — whoever it is has the most context on it now and the least in a
+week. "Nobody" is a fine answer and worth stating; the point is that it gets
+asked. This is not a notification for every PR: a channel that receives all of
+them stops being read, which costs more than the silence it replaced.
 
 If you correct the same thing more than twice, stop — context is polluted.
 Suggest `/clear` and a restart with a sharper prompt.
