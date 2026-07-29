@@ -142,7 +142,7 @@ A typical end-to-end cycle, from idea to merged code:
 | `/pitch` | Shape a feature into a Shape Up pitch (the spec / source of truth) via interview, before any code. Names the graph the work touches and its gated edges. |
 | `/adr` | Record a consequential decision in an append-only `docs/DECISIONS.md`, with optional dark-launch `Gate`/`Flip-criteria`. |
 | `/graph` | Turn a straight-line task into an execution graph: fan breadth work (audits, reviews, research) out across a fleet of subagents, verify findings, converge. Built on dynamic workflows — coordination costs zero model tokens. |
-| `/ship` | Execute an approved pitch as a closed-scope cycle: pre-spawn filter, doc-bundle, standard PR format, adversarial review, dark-launch flip. |
+| `/ship` | Execute an approved pitch as a closed-scope cycle: right-size gate (is the ceremony warranted at all?), pre-spawn filter, doc-bundle, standard PR format, adversarial review, dark-launch flip. You invoke it — a cycle spawns a writer and opens a PR, so the model never starts one on its own. |
 | `/measure` | Unblock a decision with a read-only, data-backed flip/keep/cut verdict — never guesses, never writes. |
 | `/eval` | Make eval the unit of progress: build the harness from *real* failures, localize where a pipeline breaks (transition-failure matrix), feed flip-criteria. |
 
@@ -162,6 +162,12 @@ review fan out across many agents; only one writer ever touches the code.
 ### Hooks
 
 - **PostToolUse** — auto-format/lint edited TS/Py files (only if `eslint`/`ruff` are present).
+- **PostToolUse** — verify `path:line` claims written into markdown: a `file:line`
+  is the kind of claim a reviewer nods at and a command settles, so a command
+  settles it. It reports only references whose path resolves on disk and whose
+  line is out of range or blank — a clean run is silent, a report is never a
+  guess, and paths that don't resolve (examples, other repos, planned files) are
+  skipped. Needs `python3`; silently inert without it.
 - **Stop** — an **advisory** reminder: when a turn leaves uncommitted changes, it
   prints a one-line nudge to run the project's own checks before declaring done.
   It never blocks and never re-invokes the model (so it can't loop, even with

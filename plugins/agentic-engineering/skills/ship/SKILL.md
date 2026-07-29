@@ -1,12 +1,14 @@
 ---
 name: ship
 description: >
-  This skill should be used to execute an approved pitch/spec as a delegated,
-  closed-scope cycle with verification and adversarial review. Trigger with
-  "ship this", "implement the pitch", "run this cycle", "build <shaped feature>".
-  Enforces the execution playbook: pre-spawn filter, doc-bundle, PR format, review.
+  Execute an approved pitch/spec as a delegated, closed-scope cycle with
+  verification and adversarial review. Invoke it yourself with /ship <pitch> —
+  a cycle spawns a writer and opens a PR, so it starts when you say so.
+  Enforces the execution playbook: right-size gate, pre-spawn filter, doc-bundle,
+  PR format, review.
+disable-model-invocation: true
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # /ship — execute a shaped cycle, verify, review
@@ -16,6 +18,27 @@ The organizing law: **parallelize readers, serialize writers** — research and
 review can fan out; only one writer touches the code at a time.
 
 `$ARGUMENTS` points to the approved pitch/spec. Read it first.
+
+## 0. Is the cycle warranted?
+
+The filter below decides *who* does the work. This one decides whether the
+ceremony is worth paying for at all, and it is the one that gets skipped —
+because a process that has proved itself starts to feel free.
+
+It isn't. A cycle costs three contexts (shape, write, review) plus the human
+attention to arbitrate between them, and that attention is usually the scarcest
+thing in the room. Spend it where being wrong is expensive to undo:
+
+- **Small and reversible** — a doc fix, a stale number, a rename with no
+  behavior change, a broken link: do it directly and report what you did.
+  `git revert` is the whole safety net, and it is enough.
+- **Wide, outward-facing, or hard to undo** — schema, public interface, anything
+  that runs unattended or that other people build on: there the full cycle earns
+  its cost several times over.
+
+Severity × reversibility — the same rule you apply to what an agent may do on
+its own — turned on your own process. If you can describe the diff in one
+sentence and undo it with one command, stop reading and go do it.
 
 ## 1. Pre-spawn filter (decide who does the work)
 
@@ -99,6 +122,21 @@ states).
 
 If a measurement is needed to unblock a decision, delegate to the `measurer`
 subagent (read-only data verdict) rather than guessing.
+
+### A reviewer is not an oracle
+
+Reviewers are for the questions that have no oracle: is this the right scope, how
+wide is the blast radius, was this the decision to make. For anything a command
+can settle — the build is green, the number is right, the `file:line` exists —
+give it to the command. A reviewer asked to check a verifiable fact will usually
+agree with it, because agreeing is cheap and checking is not, and adding a second
+and third reviewer buys correlated agreement rather than coverage.
+
+The move that pays is one-way: every invariant you can lift out of prose and into
+a check runs on every turn, for free, forever, and stops consuming review
+attention that has somewhere better to be. When a review keeps catching the same
+class of defect, that is not a reason to review harder — it is a check waiting to
+be written.
 
 ## 4. Dark launch & flip (behavior-altering changes)
 

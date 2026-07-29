@@ -23,8 +23,10 @@ fanned out across a fleet instead of chained one-at-a-time. See
   work across a fleet of subagents, verify findings, converge. Built on dynamic
   workflows (coordination costs zero model tokens). Ships a copy-ready
   [workflow library](skills/graph/references/WORKFLOW_LIBRARY.md).
-- `/ship` — execute an approved pitch as a closed-scope cycle: pre-spawn filter,
-  doc-bundle, standard PR format, then adversarial review before "done".
+- `/ship` — execute an approved pitch as a closed-scope cycle: **right-size gate**
+  (is the ceremony warranted at all?), pre-spawn filter, doc-bundle, standard PR
+  format, then adversarial review before "done". You invoke it; Claude never
+  starts a cycle on its own (`disable-model-invocation`).
 - `/measure` — unblock a decision with a read-only, data-backed flip/keep/cut
   verdict (never guesses, never writes).
 - `/eval` — make eval the unit of progress: build the harness from REAL failures,
@@ -44,6 +46,11 @@ fanned out across a fleet instead of chained one-at-a-time. See
 
 **Hooks**
 - PostToolUse: auto-format/lint edited TS/Py files (only if eslint/ruff present).
+- PostToolUse: verify `path:line` claims written into markdown. A `file:line` is
+  the kind of claim a reviewer nods at and a command settles — so a command
+  settles it. Reports only references whose path resolves on disk and whose line
+  is missing or blank, so a clean run is silent and a report is never a guess.
+  Needs `python3`; silently inert without it.
 - Stop: an advisory reminder — when a turn leaves uncommitted changes, it prints a
   one-line nudge to run the repo's own checks before declaring done. Never blocks,
   never re-invokes the model (can't loop, even with background workflows), silent on
@@ -64,7 +71,8 @@ Accept the `.plugin` file in chat, or in Claude Code run `/plugin` and install i
 from a marketplace/local path. After install, `/pitch` `/adr` `/graph` `/ship`
 `/measure` `/eval` appear as commands and the five agents show under `/agents`.
 
-Requires `jq` for the format hook. For the `researcher` to pull live library
+Requires `jq` for the format hook and `python3` for the `path:line` check; each
+hook is silently inert without its dependency. For the `researcher` to pull live library
 docs, connect a docs MCP (e.g. Context7):
 
 ```bash
