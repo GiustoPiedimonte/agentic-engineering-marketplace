@@ -9,6 +9,11 @@
             "type": "command",
             "command": "f=$(jq -r '.tool_input.file_path // empty'); case \"$f\" in *.ts|*.tsx|*.js|*.jsx) command -v eslint >/dev/null 2>&1 && eslint --fix \"$f\" 2>&1 || (command -v npx >/dev/null 2>&1 && npx --no-install eslint --fix \"$f\" 2>&1) || true ;; *.py) command -v ruff >/dev/null 2>&1 && ruff check --fix \"$f\" && ruff format \"$f\" 2>&1 || true ;; esac",
             "timeout": 60
+          },
+          {
+            "type": "command",
+            "command": "command -v python3 >/dev/null 2>&1 || exit 0; python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/verify-refs.py\"",
+            "timeout": 15
           }
         ]
       }

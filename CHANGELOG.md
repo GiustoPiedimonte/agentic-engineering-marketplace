@@ -6,6 +6,44 @@ plugin versions follow [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-29
+
+### Added
+- **agentic-engineering — the right-size gate** (0.4.0): `/ship` opens with a new
+  §0 that asks whether the cycle is warranted *at all*, before the pre-spawn
+  filter asks who should run it. Severity × reversibility — the rule the practice
+  already applies to what an agent may do alone — turned on the process itself:
+  small and reversible gets done directly, wide or hard to undo earns the full
+  cycle. A process that has proved itself starts to feel free, and it isn't;
+  three contexts plus the human attention to arbitrate them is the bill.
+- **agentic-engineering — `path:line` verification hook** (0.4.0): a PostToolUse
+  hook that checks every `file:line` written into markdown. Deliberately
+  conservative — it reports only references whose path resolves on disk and whose
+  line is out of range or blank, so a clean run is silent and a report is never a
+  guess. References to paths that don't resolve (examples, other repos, planned
+  files) are skipped rather than flagged. Needs `python3`; silently inert without
+  it. This is the plugin's own advice applied to itself: a claim a command can
+  settle should not be spending a reviewer's attention.
+- **agentic-engineering — scope sizing and reader fan-out in `/ship`** (0.4.0):
+  three defects found using the skill on a real cycle. A pitch slice is not a PR
+  slice (`/pitch` carves conceptual slices worth two to four PRs each, and serial
+  reliability compounds at roughly 0.85 per step); the readers are the half that
+  gets skipped, so the substrate inventory belongs in `/graph` *before* the writer
+  is spawned; and a delegated writer is judged by its branch, not by its silence.
+
+### Changed
+- **agentic-engineering — `/ship` is user-invoked only** (0.4.0): the skill now
+  sets `disable-model-invocation: true`. A cycle spawns a writer and opens a PR,
+  which is the archetype the field exists for — you decide when it starts, not
+  the model reading your code and concluding it looks ready. Its description also
+  leaves every session's context as a side effect.
+- **agentic-engineering — a reviewer is not an oracle** (0.4.0): `/ship` §3 now
+  states where adversarial review belongs (scope, blast radius, whether this was
+  the decision to make) and where it doesn't (anything a command can settle).
+  Adding a second and third reviewer to a verifiable claim buys correlated
+  agreement, not coverage; when a review keeps catching the same class of defect,
+  that is a check waiting to be written.
+
 ## [0.4.0] - 2026-07-23
 
 ### Added
