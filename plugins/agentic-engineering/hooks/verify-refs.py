@@ -28,7 +28,10 @@ MAX_REPORTS = 5
 
 # foo/bar.ts:42 — path with an extension, then a line number.
 REF = re.compile(r"(?<![\w:/.\-])((?:[\w.\-]+/)*[\w.\-]+\.[A-Za-z0-9]{1,8}):(\d{1,6})(?![\w.\-])")
-URL = re.compile(r"[a-zA-Z][a-zA-Z0-9+.\-]*://\S+")
+# Scheme length is bounded on purpose: an unbounded `*` before `://` backtracks
+# quadratically over a long unbroken run of scheme-legal characters, which a
+# generated or minified line can supply. No real scheme is 16 characters.
+URL = re.compile(r"[a-zA-Z][a-zA-Z0-9+.\-]{0,15}://\S+")
 
 
 def repo_root(start: Path) -> Path | None:
@@ -49,6 +52,19 @@ def resolve(ref: str, md_dir: Path, cwd: Path) -> Path | None:
         if candidate.is_file():
             return candidate
     return None
+
+
+def read_target(ref: str, md: Path, md_dir: Path, cwd: Path) -> list[str] | None:
+    """Lines of the referenced file, or None when it is not ours to judge."""
+    target = resolve(ref, md_dir, cwd)
+    if target is None:
+        return None
+    try:
+        if target.stat().st_size > MAX_BYTES or target.resolve() == md.resolve():
+            return None
+        return target.read_text(encoding="utf-8").splitlines()
+    except (OSError, UnicodeDecodeError):
+        return None
 
 
 def main() -> int:
@@ -75,6 +91,14 @@ def main() -> int:
 
     findings: list[str] = []
     seen: set[tuple[str, int]] = set()
+    # Referenced files are read at most once each, and only if they are small
+    # enough to be something a `file:line` could sanely point at.
+    cache: dict[str, list[str] | None] = {}
+
+    def lines_of(ref: str) -> list[str] | None:
+        if ref not in cache:
+            cache[ref] = read_target(ref, md, md_dir, cwd)
+        return cache[ref]
 
     for raw_line in URL.sub(" ", text).splitlines():
         for ref, num in REF.findall(raw_line):
@@ -83,12 +107,8 @@ def main() -> int:
                 continue
             seen.add((ref, line_no))
 
-            target = resolve(ref, md_dir, cwd)
-            if target is None or target.resolve() == md.resolve():
-                continue
-            try:
-                lines = target.read_text(encoding="utf-8").splitlines()
-            except (OSError, UnicodeDecodeError):
+            lines = lines_of(ref)
+            if lines is None:
                 continue
 
             if line_no < 1 or line_no > len(lines):

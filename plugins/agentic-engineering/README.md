@@ -71,7 +71,8 @@ Accept the `.plugin` file in chat, or in Claude Code run `/plugin` and install i
 from a marketplace/local path. After install, `/pitch` `/adr` `/graph` `/ship`
 `/measure` `/eval` appear as commands and the five agents show under `/agents`.
 
-Requires `jq` for the format hook. For the `researcher` to pull live library
+Requires `jq` for the format hook and `python3` for the `path:line` check; each
+hook is silently inert without its dependency. For the `researcher` to pull live library
 docs, connect a docs MCP (e.g. Context7):
 
 ```bash

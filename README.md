@@ -142,7 +142,7 @@ A typical end-to-end cycle, from idea to merged code:
 | `/pitch` | Shape a feature into a Shape Up pitch (the spec / source of truth) via interview, before any code. Names the graph the work touches and its gated edges. |
 | `/adr` | Record a consequential decision in an append-only `docs/DECISIONS.md`, with optional dark-launch `Gate`/`Flip-criteria`. |
 | `/graph` | Turn a straight-line task into an execution graph: fan breadth work (audits, reviews, research) out across a fleet of subagents, verify findings, converge. Built on dynamic workflows — coordination costs zero model tokens. |
-| `/ship` | Execute an approved pitch as a closed-scope cycle: pre-spawn filter, doc-bundle, standard PR format, adversarial review, dark-launch flip. |
+| `/ship` | Execute an approved pitch as a closed-scope cycle: right-size gate (is the ceremony warranted at all?), pre-spawn filter, doc-bundle, standard PR format, adversarial review, dark-launch flip. You invoke it — a cycle spawns a writer and opens a PR, so the model never starts one on its own. |
 | `/measure` | Unblock a decision with a read-only, data-backed flip/keep/cut verdict — never guesses, never writes. |
 | `/eval` | Make eval the unit of progress: build the harness from *real* failures, localize where a pipeline breaks (transition-failure matrix), feed flip-criteria. |
 

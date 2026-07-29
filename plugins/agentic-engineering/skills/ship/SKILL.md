@@ -1,9 +1,9 @@
 ---
 name: ship
 description: >
-  This skill should be used to execute an approved pitch/spec as a delegated,
-  closed-scope cycle with verification and adversarial review. Trigger with
-  "ship this", "implement the pitch", "run this cycle", "build <shaped feature>".
+  Execute an approved pitch/spec as a delegated, closed-scope cycle with
+  verification and adversarial review. Invoke it yourself with /ship <pitch> —
+  a cycle spawns a writer and opens a PR, so it starts when you say so.
   Enforces the execution playbook: right-size gate, pre-spawn filter, doc-bundle,
   PR format, review.
 disable-model-invocation: true

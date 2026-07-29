@@ -17,13 +17,15 @@ plugin versions follow [Semantic Versioning](https://semver.org).
   cycle. A process that has proved itself starts to feel free, and it isn't;
   three contexts plus the human attention to arbitrate them is the bill.
 - **agentic-engineering — `path:line` verification hook** (0.4.0): a PostToolUse
-  hook that checks every `file:line` written into markdown. Deliberately
-  conservative — it reports only references whose path resolves on disk and whose
-  line is out of range or blank, so a clean run is silent and a report is never a
-  guess. References to paths that don't resolve (examples, other repos, planned
-  files) are skipped rather than flagged. Needs `python3`; silently inert without
-  it. This is the plugin's own advice applied to itself: a claim a command can
-  settle should not be spending a reviewer's attention.
+  hook that checks the `file:line` references it can resolve in written markdown.
+  Deliberately conservative — it reports only references whose path resolves on
+  disk and whose line is out of range or blank, so a clean run is silent and a
+  report is never a guess. Paths that don't resolve (examples, other repos,
+  planned files), absolute paths, and refs not followed by a word boundary are
+  skipped rather than flagged: it is a floor on correctness, not a proof. Needs
+  `python3`; silently inert without it. Covered by `scripts/test_verify_refs.py`
+  in the same CI gate — this is the plugin's own advice applied to itself, and a
+  checker no command checks would be the exact defect it exists to catch.
 - **agentic-engineering — scope sizing and reader fan-out in `/ship`** (0.4.0):
   three defects found using the skill on a real cycle. A pitch slice is not a PR
   slice (`/pitch` carves conceptual slices worth two to four PRs each, and serial

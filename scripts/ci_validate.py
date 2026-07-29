@@ -5,6 +5,7 @@ Checks, in CI and locally:
   - every *.json parses;
   - each plugin's plugin.json name/version agrees with its marketplace entry;
   - each SKILL.md has frontmatter with name + description;
+  - every plugin hook script compiles, and every scripts/test_*.py passes;
   - each README: exactly one H1, every fenced code block has a language tag,
     no empty links, and every relative link / <img src> resolves on disk.
 
@@ -105,10 +106,31 @@ def check_readme(md: Path) -> None:
             err(f"{rel}: relative link does not resolve → {t}")
 
 
+def check_hook_scripts() -> None:
+    """Hook scripts must compile, and every scripts/test_*.py must pass."""
+    import py_compile
+    import subprocess
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        for i, script in enumerate(sorted(ROOT.glob("plugins/*/hooks/*.py"))):
+            try:
+                py_compile.compile(str(script), doraise=True, cfile=f"{tmp}/{i}.pyc")
+            except py_compile.PyCompileError as e:
+                err(f"{script.relative_to(ROOT)}: does not compile — {e}")
+
+    for test in sorted(ROOT.glob("scripts/test_*.py")):
+        proc = subprocess.run([sys.executable, str(test)], capture_output=True, text=True)
+        if proc.returncode != 0:
+            detail = (proc.stderr or proc.stdout).strip() or "no output"
+            err(f"{test.relative_to(ROOT)}: failed —\n{detail}")
+
+
 def main() -> int:
     check_json_parses()
     check_manifests()
     check_skills()
+    check_hook_scripts()
     readmes = [ROOT / "README.md"] + sorted(ROOT.glob("plugins/*/README.md"))
     for md in readmes:
         check_readme(md)
