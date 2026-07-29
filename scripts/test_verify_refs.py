@@ -23,17 +23,21 @@ HOOK = ROOT / "plugins" / "agentic-engineering" / "hooks" / "verify-refs.py"
 failures: list[str] = []
 
 
-def run(md_path: Path | str, cwd: Path | str, *, raw_stdin: str | None = None):
+def run(md_path: Path | str, cwd: Path | str, *, raw_stdin: str | None = None, timeout: int = 60):
     payload = raw_stdin
     if payload is None:
         payload = json.dumps({"cwd": str(cwd), "tool_input": {"file_path": str(md_path)}})
-    proc = subprocess.run(
-        [sys.executable, str(HOOK)],
-        input=payload,
-        capture_output=True,
-        text=True,
-        timeout=60,
-    )
+    try:
+        proc = subprocess.run(
+            [sys.executable, str(HOOK)],
+            input=payload,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired:
+        # A hung hook is a failure to report, not a traceback to decipher.
+        return -1, f"hook did not finish within {timeout}s"
     return proc.returncode, proc.stderr
 
 
@@ -136,7 +140,9 @@ def main() -> int:
         md = d / "pathological.md"
         md.write_text("a" * 200_000 + "\ntrailing: src/target.py:2\n", encoding="utf-8")
         started = time.monotonic()
-        code, err = run(md, d)
+        # Bounded low on purpose: with an unbounded scheme this line takes
+        # minutes, and the assertion below should be what reports it.
+        code, err = run(md, d, timeout=15)
         elapsed = time.monotonic() - started
         expect("pathological line stays fast", elapsed < 5.0, f"took {elapsed:.1f}s")
         expect("pathological line still finds the real ref", code == 2 and "blank" in err, err)
