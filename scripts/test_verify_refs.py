@@ -106,14 +106,31 @@ def main() -> int:
         expect("report capped at 5", reported == 5, f"reported {reported}")
 
         # --- a huge referenced file is skipped, not read (D2) -----------------
+        # Few fat lines, and a line number REF actually matches (it caps at six
+        # digits): without those two properties the reference is never extracted
+        # and this passes whether or not the size cap exists.
         big = d / "src" / "big.log"
-        with big.open("w", encoding="utf-8") as fh:
-            fh.write("x\n" * 1_200_000)  # > MAX_BYTES
+        big.write_text(("y" * 300_000 + "\n") * 10, encoding="utf-8")
         expect("fixture is over the cap", big.stat().st_size > 2_000_000)
         md = d / "big.md"
-        md.write_text("huge: src/big.log:99999999\n", encoding="utf-8")
+        md.write_text("huge: src/big.log:999999\n", encoding="utf-8")
         code, err = run(md, d)
         expect("oversized target skipped", code == 0 and err.strip() == "", f"exit {code}: {err}")
+
+        # --- boundary: the line just past the end is out of range -------------
+        md = d / "boundary.md"
+        md.write_text("last: src/target.py:3\npast: src/target.py:4\n", encoding="utf-8")
+        code, err = run(md, d)
+        expect("len(lines) is in range", "src/target.py:3" not in err, err)
+        expect("len(lines)+1 is out of range", "src/target.py:4" in err, err)
+
+        # --- URLs really are stripped before matching -------------------------
+        # `=` before the path means REF would match it without URL.sub, so this
+        # fails if the stripping is removed.
+        md = d / "url.md"
+        md.write_text("see https://example.com/x?f=src/target.py:2\n", encoding="utf-8")
+        code, err = run(md, d)
+        expect("ref inside a URL is stripped", code == 0 and err.strip() == "", f"exit {code}: {err}")
 
         # --- no quadratic blowup on a long scheme-legal run (D1) --------------
         md = d / "pathological.md"

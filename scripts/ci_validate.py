@@ -120,9 +120,15 @@ def check_hook_scripts() -> None:
                 err(f"{script.relative_to(ROOT)}: does not compile — {e}")
 
     for test in sorted(ROOT.glob("scripts/test_*.py")):
-        proc = subprocess.run([sys.executable, str(test)], capture_output=True, text=True)
+        try:
+            proc = subprocess.run(
+                [sys.executable, str(test)], capture_output=True, text=True, timeout=300
+            )
+        except subprocess.TimeoutExpired:
+            err(f"{test.relative_to(ROOT)}: timed out after 300s")
+            continue
         if proc.returncode != 0:
-            detail = (proc.stderr or proc.stdout).strip() or "no output"
+            detail = (proc.stderr.strip() or proc.stdout.strip()) or "no output"
             err(f"{test.relative_to(ROOT)}: failed —\n{detail}")
 
 

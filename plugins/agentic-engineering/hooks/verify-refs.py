@@ -2,14 +2,16 @@
 """PostToolUse hook: verify `path:line` claims written into markdown.
 
 A `file:line` reference is a claim, and it is the kind of claim a reviewer
-nods at and a command settles. This checks the ones that can be checked:
-after markdown is written or edited, every `path:line` in it whose path
-resolves on disk must point at a line that exists and is not blank.
+nods at and a command settles. After markdown is written or edited, this
+checks the references it can resolve: a `path:line` whose path is found on
+disk must point at a line that exists and is not blank.
 
 Deliberately conservative — it reports only when the file is really there and
 the line is really wrong, so a clean run is silent and a report is never a
-guess. References to paths that do not resolve (illustrative examples, other
-repos, planned files) are skipped rather than flagged.
+guess. Plenty is skipped by design and not reported at all: paths that do not
+resolve (illustrative examples, other repos, planned files), absolute paths,
+line numbers over six digits, and refs followed by a word character, `.` or
+`-`. This is a floor on correctness, not a proof of it.
 
 Exit 2 shows stderr to Claude without blocking (PostToolUse already ran).
 Any unexpected failure exits 0: this hook never costs anyone a turn.

@@ -21,8 +21,9 @@ plugin versions follow [Semantic Versioning](https://semver.org).
   Deliberately conservative — it reports only references whose path resolves on
   disk and whose line is out of range or blank, so a clean run is silent and a
   report is never a guess. Paths that don't resolve (examples, other repos,
-  planned files), absolute paths, and refs not followed by a word boundary are
-  skipped rather than flagged: it is a floor on correctness, not a proof. Needs
+  planned files), absolute paths, line numbers over six digits, and refs
+  immediately followed by a word character, `.` or `-` are skipped rather than
+  flagged: it is a floor on correctness, not a proof of it. Needs
   `python3`; silently inert without it. Covered by `scripts/test_verify_refs.py`
   in the same CI gate — this is the plugin's own advice applied to itself, and a
   checker no command checks would be the exact defect it exists to catch.
