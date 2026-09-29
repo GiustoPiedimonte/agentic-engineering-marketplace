@@ -1,3 +1,9 @@
+> [!IMPORTANT]
+> **Retired. Do not install this marketplace for active project workflow.**
+> Current projects keep their engineering contract inside each repository and
+> use GitHub plus their chosen coding-agent tooling directly. This repository
+> remains historical/reference material only.
+
 <div align="center">
 
 <img src="assets/banner.svg" alt="agentic-engineering — a Claude Code plugin: shape, decide, execute, measure, eval" width="100%">
